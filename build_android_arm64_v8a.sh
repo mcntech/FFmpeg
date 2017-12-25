@@ -22,15 +22,16 @@ function build_arm64
   ./configure \
   --logfile=conflog.txt \
   --target-os=linux \
-  --prefix=./android/arm64-v8a \
+  --prefix=./ffmpeg_dist/android/arm64-v8a \
   ${GENERAL} \
   --sysroot=$PLATFORM \
-  --extra-cflags="-I/home/ramp/Android/Sdk/ndk-bundle/sysroot/usr/include/ -I/home/ramp/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi/" \
+  --extra-cflags="-I$NDK/sysroot/usr/include/ -I$NDK/sysroot/usr/include/aarch64-linux-android/" \
   --extra-ldflags="-Wl,-rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib -nostdlib -lc -lm -ldl -llog" \
   --disable-doc \
   ${MODULES} \
   --disable-everything \
   --disable-programs \
+  --disable-devices \
   --enable-decoder=aac \
   --enable-decoder=ac3 \
   --enable-decoder=eac3 \

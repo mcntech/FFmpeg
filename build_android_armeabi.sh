@@ -16,15 +16,16 @@ GENERAL="\
 MODULES="\
 --enable-gpl"
 
-function build_ARMv7
+function build_ARMv6
 {
   ./configure \
   --target-os=linux \
-  --prefix=./ffmpeg_dist/android/armeabi-v7a \
+  --prefix=./ffmpeg_dist/android/armeabi \
   ${GENERAL} \
   --sysroot=$PLATFORM \
-  --extra-cflags="-I$NDK/sysroot/usr/include/ -I$NDK/sysroot/usr/include/arm-linux-androideabi/  -DANDROID -fPIC -ffunction-sections -funwind-tables -fstack-protector -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops -finline-limit=300" \
+  --extra-cflags="-I$NDK/sysroot/usr/include/ -I$NDK/sysroot/usr/include/arm-linux-androideabi/  -O3 -fpic -fasm -Wno-psabi -fno-short-enums -fno-strict-aliasing -finline-limit=300 -mfloat-abi=softfp -mfpu=vfp -marm -march=armv6" \
   --extra-ldflags="-Wl,-rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib -nostdlib -lc -lm -ldl -llog" \
+  --enable-zlib \
   ${MODULES} \
   --disable-doc \
   --enable-neon \
@@ -43,5 +44,8 @@ function build_ARMv7
   make install
 }
 
-build_ARMv7
-echo Android ARMv7-a builds finished
+
+
+build_ARMv6
+
+echo Android ARMEABI builds finished

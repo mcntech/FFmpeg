@@ -10,7 +10,7 @@ function build_x86_64
   ./configure \
   --logfile=conflog.txt \
   --target-os=linux \
-  --prefix=./x86/64bit \
+  --prefix=./ffmpeg_dist/linux/x86_64bit \
   --disable-doc \
   ${MODULES} \
   --disable-everything \
