@@ -149,6 +149,7 @@ static void check_color_terminal(void)
 
 static void colored_fputs(int level, int tint, const char *str)
 {
+#if 0
     int local_use_color;
     if (!*str)
         return;
@@ -187,7 +188,7 @@ static void colored_fputs(int level, int tint, const char *str)
     } else
         fputs(str, stderr);
 #endif
-
+#endif
 }
 
 const char *av_default_item_name(void *ptr)
@@ -332,12 +333,16 @@ void av_log_default_callback(void* ptr, int level, const char* fmt, va_list vl)
     if (print_prefix && (flags & AV_LOG_SKIP_REPEATED) && !strcmp(line, prev) &&
         *line && line[strlen(line) - 1] != '\r'){
         count++;
+#if 0
         if (is_atty == 1)
             fprintf(stderr, "    Last message repeated %d times\r", count);
+#endif
         goto end;
     }
     if (count > 0) {
+#if 0
         fprintf(stderr, "    Last message repeated %d times\n", count);
+#endif
         count = 0;
     }
     strcpy(prev, line);
